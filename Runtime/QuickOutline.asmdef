@@ -1,7 +1,7 @@
 {
     "name": "QuickOutline",
-    "references": [
-    ],
+    "rootNamespace": "QuickOutline",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
