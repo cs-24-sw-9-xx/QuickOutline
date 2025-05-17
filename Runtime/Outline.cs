@@ -1,4 +1,4 @@
-﻿//
+//
 //  Outline.cs
 //  QuickOutline
 //
@@ -86,8 +86,16 @@ public class Outline : MonoBehaviour
 
     private bool needsUpdate;
 
-    void MyAwake()
+    void Awake()
     {
+        #if UNITY_SERVER
+            return;
+        #endif
+        
+        if (Application.isBatchMode)
+        {
+            return;
+        }
 
         // Cache renderers
         renderers = GetComponentsInChildren<Renderer>();
@@ -108,7 +116,14 @@ public class Outline : MonoBehaviour
 
     void OnEnable()
     {
-        MyAwake();
+        #if UNITY_SERVER
+            return;
+        #endif
+        
+        if (Application.isBatchMode)
+        {
+            return;
+        }
     
         foreach (var renderer in renderers)
         {
@@ -125,7 +140,15 @@ public class Outline : MonoBehaviour
 
     void OnValidate()
     {
-
+        #if UNITY_SERVER
+            return;
+        #endif
+        
+        if (Application.isBatchMode)
+        {
+            return;
+        }
+        
         // Update material properties
         needsUpdate = true;
 
@@ -145,6 +168,14 @@ public class Outline : MonoBehaviour
 
     void Update()
     {
+        #if UNITY_SERVER
+            return;
+        #endif
+        
+        if (Application.isBatchMode)
+        {
+            return;
+        }
         if (needsUpdate)
         {
             needsUpdate = false;
@@ -155,6 +186,14 @@ public class Outline : MonoBehaviour
 
     void OnDisable()
     {
+        #if UNITY_SERVER
+            return;
+        #endif
+        
+        if (Application.isBatchMode)
+        {
+            return;
+        }
         foreach (var renderer in renderers)
         {
 
@@ -170,6 +209,14 @@ public class Outline : MonoBehaviour
 
     void OnDestroy()
     {
+        #if UNITY_SERVER
+            return;
+        #endif
+        
+        if (Application.isBatchMode)
+        {
+            return;
+        }
 
         // Destroy material instances
         Destroy(outlineMaskMaterial);
