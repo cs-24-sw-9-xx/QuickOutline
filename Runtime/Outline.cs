@@ -86,7 +86,7 @@ public class Outline : MonoBehaviour
 
     private bool needsUpdate;
 
-    void Awake()
+    void MyAwake()
     {
 
         // Cache renderers
@@ -108,6 +108,8 @@ public class Outline : MonoBehaviour
 
     void OnEnable()
     {
+        MyAwake();
+    
         foreach (var renderer in renderers)
         {
 
